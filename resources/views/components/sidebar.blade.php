@@ -1,3 +1,1 @@
-@livewire('navbar')
-
 @livewire('sidebar')
