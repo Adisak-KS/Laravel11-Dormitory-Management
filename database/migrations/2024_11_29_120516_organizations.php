@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('phone', '50');
             $table->string('address', '1000');
             $table->string('tax_code', '15');
-            $table->string('logo', '255');
+            $table->string('logo')->nullable();
+
         });
     }
 

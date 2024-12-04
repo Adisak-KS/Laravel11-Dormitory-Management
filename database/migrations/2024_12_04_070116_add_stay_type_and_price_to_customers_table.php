@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('rooms', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('name',);
-            $table->integer('price_per_day');
-            $table->integer('price_per_month');
-            $table->string('status', 6);
-            $table->string('is_empty', 3)->default('yes');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('stay_type',1);
+            $table->integer('price');
         });
     }
 
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('stay_type');
+            $table->dropColumn('price');    
+        });
     }
 };
