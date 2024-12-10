@@ -101,7 +101,7 @@
         </div>
     </x-modal>
 
-    <x-modal-confirm wire:modal="showModalDelete" title="ลบผู้เข้าพัก" text="คุณต้องการลบผู้เข้าพักนี้ใช่หรือไม่"
+    <x-modal-confirm showModalDelete="showModalDelete" title="ลบผู้เข้าพัก" text="คุณต้องการลบผู้เข้าพักนี้ใช่หรือไม่"
         clickConfirm="delete" clickCancel="closeModalDelete">
     </x-modal-confirm>
 
