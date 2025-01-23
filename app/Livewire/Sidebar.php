@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class Sidebar extends Component {
     public $currentMenu = '';
+    public $userLevel = '';
 
     public function mount() {
         $user_id = session()->get('user_id');
@@ -13,8 +14,9 @@ class Sidebar extends Component {
         if(!isset($user_id)) {
             return redirect()->to('/');
         }
+        
         $this->currentMenu = session()->get('current_menu') ?? '';
-
+        $this->userLevel = session()->get('user_level');
     }
 
     public function changeMenu($menu) {

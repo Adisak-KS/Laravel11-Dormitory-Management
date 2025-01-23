@@ -41,8 +41,14 @@ class Signin extends Component
                 session()->put('user_id', $user->id);
                 session()->put('user_name', $user->name);
                 session()->put('user_level', $user->level);
+
+                if($user->level == 'admin'){
+                    $this->redirect('/dashboard');
+                }else{
+                    $this->redirect('/customer');
+                   
+                }
                 
-                $this->redirect('/dashboard');
             }else{
                 $this->error = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
             }
