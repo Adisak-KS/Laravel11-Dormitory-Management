@@ -9,33 +9,36 @@ use Illuminate\Support\Facades\Hash;
 
 class Signin extends Component
 {
-    public $username;
+    public $email;
     public $password;
-    public $errorUsername;
+    public $errorEmail;
     public $errorPassword;
     public $error = null;
 
 
     public function signin()
     {
-        $this->errorUsername = null;
+        $this->errorEmail = null;
         $this->errorPassword = null;
         $this->error = null;
 
         $validator = Validator::make([
-            'username' => $this->username,
+            'email' => $this->email,
             'password' => $this->password,
         ], [
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
+        ], [
+            'email.required' => 'กรุณากรอกอีเมล',
+            'password.required' => 'กรุณากรอกรหัสผ่าน',
         ]);
 
         if ($validator->fails()) {
-            $this->errorUsername = $validator->errors()->get('username')[0] ?? null;
-            $this->errorPassword = $validator->errors()->get('password')[0] ?? null;
+            $this->errorEmail = $validator->errors()->first('email');
+            $this->errorPassword = $validator->errors()->first('password');
         } else {
-            $user = User::where('name', $this->username)->first();
-                
+            $user = User::where('email', $this->email)->first();
+
 
             if ($user && Hash::check($this->password, $user->password)) {
                 session()->put('user_id', $user->id);
