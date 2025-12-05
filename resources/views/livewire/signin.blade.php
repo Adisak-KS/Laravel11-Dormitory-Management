@@ -23,7 +23,7 @@
                         </span>
                         <input
                             type="email"
-                            wire:model="email"
+                            wire:model.live="email"
                             placeholder="example@email.com"
                             class="w-full pl-12 pr-4 py-4 bg-orange-50 border-2 border-orange-100 rounded-xl text-gray-700 placeholder-gray-400 focus:bg-white focus:border-orange-400 focus:outline-none transition-all"
                         >
@@ -43,17 +43,18 @@
                             <i class="fa fa-lock"></i>
                         </span>
                         <input
-                            :type="showPassword ? 'text' : 'password'"
-                            wire:model="password"
+                            x-ref="passwordInput"
+                            type="password"
+                            wire:model.live="password"
                             placeholder="••••••••"
                             class="w-full pl-12 pr-12 py-4 bg-orange-50 border-2 border-orange-100 rounded-xl text-gray-700 placeholder-gray-400 focus:bg-white focus:border-orange-400 focus:outline-none transition-all"
                         >
                         <button
                             type="button"
-                            @click="showPassword = !showPassword"
+                            x-on:click="showPassword = !showPassword; $refs.passwordInput.type = showPassword ? 'text' : 'password'"
                             class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors"
                         >
-                            <i class="fa" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                            <i class="fa" x-bind:class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
                     </div>
                     @if ($errorPassword)
